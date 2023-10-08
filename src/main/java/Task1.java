@@ -19,17 +19,16 @@ public class Task1 {
         String format = setMessageFormat();
         Properties properties = setupProperties();
         String message = generateMessage(properties);
-        System.out.println("\n");
         printMessageToConsole(format, message);
-        System.out.println("\n");
         logger.info("Task complete");
     }
 
     private static void printApplicationParameters() {
-        System.out.println("Application parameters:");
-        System.out.println("messageFormat: \"json\" (default) or \"xml\"");
-        System.out.println("propertyFile: Extended property file name " +
+        System.out.println("\u001B[33m Application parameters:");
+        System.out.println("\u001B[34m messageFormat: \"json\" (default) or \"xml\"");
+        System.out.println(" propertyFile: Extended property file name " +
                 "(default): property file included in application");
+        System.out.println("\u001B[0m");
     }
 
     private static String setMessageFormat() {
@@ -51,7 +50,7 @@ public class Task1 {
                 logger.info("Declared Extended property file " + extendedPropertyFileName);
                 current.load(new FileInputStream(extendedPropertyFileName));
             } else {
-                logger.info("Extended property file not found");
+                logger.info("Extended property file not assigned");
                 logger.info("Used default property file " + PROPERTY_FILE_NAME);
                 current.load(Task1.class.getResourceAsStream("/app.properties"));
             }
@@ -80,6 +79,7 @@ public class Task1 {
     }
 
     private static void printMessageToConsole(String format, String message) {
+        System.out.println("\u001B[32m");
         if (format.equals("json")) {
             ObjectNode json = createJsonMessage(message);
             System.out.println("result is: " + json);
@@ -87,6 +87,7 @@ public class Task1 {
             Document xmlObject = createXMLMessage(message);
             printXML(xmlObject.getDocumentElement());
         }
+        System.out.println("\u001B[0m");
     }
 
     private static ObjectNode createJsonMessage(String message) {
