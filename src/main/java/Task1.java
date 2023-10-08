@@ -19,6 +19,7 @@ public class Task1 {
         String format = setMessageFormat();
         Properties properties = setupProperties();
         String message = generateMessage(properties);
+        System.out.println("\n");
         printMessageToConsole(format, message);
         System.out.println("\n");
         logger.info("Task complete");
